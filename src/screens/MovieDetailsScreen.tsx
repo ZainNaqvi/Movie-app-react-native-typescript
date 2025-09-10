@@ -46,7 +46,8 @@ const MovieDetailScreen: React.FC<any> = ({ route, navigation }) => {
           vid.type === "Trailer" &&
           (vid.site === "YouTube")
       );
-      if (trailer) setTrailerKey(`https://www.youtube.com/watch?v=thOYFqARMLo`);
+     
+      if (trailer) setTrailerKey(trailer.key);
     } catch (error) {
       console.log("Error fetching movie details", error);
     } finally {
@@ -145,7 +146,7 @@ const MovieDetailScreen: React.FC<any> = ({ route, navigation }) => {
               width={scale(320)}
                 height={250}
                 play={true}
-                videoId={trailerKey.split("v=")[1]}
+                videoId={trailerKey}
                 onChangeState={(state: string) => {
                   if (state === "ended") {
                     setPlayingTrailer(false);
